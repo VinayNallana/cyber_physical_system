@@ -48,7 +48,7 @@ def main():
 
 =======
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+
 
 def main():
     """Main entry point for the CPS application."""
