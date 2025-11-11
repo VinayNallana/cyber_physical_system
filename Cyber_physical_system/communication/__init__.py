@@ -5,9 +5,9 @@ from .protocols import CommunicationProtocol, RESTProtocol, MQTTProtocol
 from .serializers import MessageSerializer
 
 __all__ = [
-    'MessageBroker',
-    'CommunicationProtocol',
-    'RESTProtocol',
-    'MQTTProtocol',
-    'MessageSerializer'
+    "MessageBroker",
+    "CommunicationProtocol",
+    "RESTProtocol",
+    "MQTTProtocol",
+    "MessageSerializer",
 ]
