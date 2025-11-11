@@ -33,12 +33,10 @@ class MessageBroker:
         self.is_running = False
         self.worker_thread = None
         logger.info("Message broker initialized")
-
     def start(self) -> None:
         """Start the message broker."""
         self.is_running = True
         logger.info("Message broker started")
-
     def stop(self) -> None:
         """Stop the message broker."""
         self.is_running = False
@@ -69,6 +67,7 @@ class MessageBroker:
             if topic_name not in self.subscribers:
                 self.create_topic(topic_name)
 
+
             self.subscribers[topic_name].append(callback)
             logger.info(f"New subscriber added to topic '{topic_name}'")
 
@@ -89,7 +88,6 @@ class MessageBroker:
         if not self.is_running:
             logger.warning("Message broker is not running")
             return False
-
         with self.lock:
             if topic_name not in self.topics:
                 self.create_topic(topic_name)

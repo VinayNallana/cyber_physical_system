@@ -97,7 +97,6 @@ class YOLOv9Detector:
             imgsz: Image size
             batch_size: Batch size
             **kwargs: Additional training arguments
-
         Returns:
             Training results dictionary
         """
@@ -175,7 +174,6 @@ class YOLOv9Detector:
             image: Image path or numpy array
             conf_threshold: Confidence threshold
             iou_threshold: IoU threshold for NMS
-
         Returns:
             Detection results dictionary
         """
@@ -206,7 +204,6 @@ class YOLOv9Detector:
                 boxes = result.boxes.xyxy.cpu().numpy()
                 confidences = result.boxes.conf.cpu().numpy()
                 class_ids = result.boxes.cls.cpu().numpy().astype(int)
-
                 for i in range(len(boxes)):
                     detection = {
                         "bbox": boxes[i].tolist(),
@@ -307,7 +304,6 @@ class YOLOv9Detector:
         if not self.is_trained or self.model is None:
             logger.error("Model not ready for export")
             return False
-
         try:
             self.model.export(format=format)
             logger.info(f"Model exported to {format} format")
@@ -315,7 +311,6 @@ class YOLOv9Detector:
         except Exception as e:
             logger.error(f"Error exporting model: {e}")
             return False
-
     def get_metrics(self) -> Dict:
         """Get model performance metrics."""
         if not self.inference_times:
@@ -346,7 +341,6 @@ class YOLOv9Detector:
             image: Input image
             detections: List of detection dictionaries
             save_path: Optional path to save visualization
-
         Returns:
             Annotated image
         """

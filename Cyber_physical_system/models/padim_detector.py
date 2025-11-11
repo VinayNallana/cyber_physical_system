@@ -194,7 +194,6 @@ class PaDiMDetector:
             self.cov_embeddings = []
             for i in range(all_features.shape[0]):
                 features_at_location = all_features[i].numpy()  # [N, C]
-
                 # Use Ledoit-Wolf covariance estimation
                 lw = LedoitWolf()
                 cov = lw.fit(features_at_location).covariance_
@@ -268,7 +267,6 @@ class PaDiMDetector:
                 mean = self.mean_embeddings[i].numpy()
                 cov = self.cov_embeddings[i]
                 feature = features[i].cpu().numpy()
-
                 try:
                     # Add small regularization to avoid singular matrix
                     cov_inv = np.linalg.inv(cov + np.eye(cov.shape[0]) * 1e-6)
@@ -361,7 +359,6 @@ class PaDiMDetector:
         if not self.is_trained:
             logger.error("Model not trained")
             return False
-
         try:
             model_data = {
                 "mean_embeddings": self.mean_embeddings,
@@ -439,7 +436,6 @@ class PaDiMDetector:
             image: Original image
             anomaly_map: Anomaly map
             save_path: Optional path to save visualization
-
         Returns:
             Visualization image
         """

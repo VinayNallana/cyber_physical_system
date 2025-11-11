@@ -32,7 +32,6 @@ class CPSDashboard:
         self.root = tk.Tk()
         self.root.title("Cyber-Physical System Dashboard - YOLOv9 & PaDiM")
         self.root.geometry("1400x900")
-
         # State variables
         self.is_monitoring = False
         self.current_image = None
@@ -48,20 +47,17 @@ class CPSDashboard:
         # Create main container with tabs
         self.notebook = ttk.Notebook(self.root)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-
         # Create tabs
         self.tab_overview = ttk.Frame(self.notebook)
         self.tab_detection = ttk.Frame(self.notebook)
         self.tab_anomaly = ttk.Frame(self.notebook)
         self.tab_training = ttk.Frame(self.notebook)
         self.tab_metrics = ttk.Frame(self.notebook)
-
         self.notebook.add(self.tab_overview, text="System Overview")
         self.notebook.add(self.tab_detection, text="Object Detection")
         self.notebook.add(self.tab_anomaly, text="Anomaly Detection")
         self.notebook.add(self.tab_training, text="Training")
         self.notebook.add(self.tab_metrics, text="Metrics & Analytics")
-
         # Setup each tab
         self._setup_overview_tab()
         self._setup_detection_tab()
@@ -564,7 +560,6 @@ class CPSDashboard:
             image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         else:
             image_rgb = image
-
         # Resize if needed
         h, w = image_rgb.shape[:2]
         max_w, max_h = max_size
@@ -586,12 +581,10 @@ class CPSDashboard:
         if not dataset_path:
             messagebox.showerror("Error", "Please select a dataset")
             return
-
         # Start training in separate thread
         def train_thread():
             self.training_progress.start()
             self._log_training("Starting YOLOv9 training...")
-
             try:
                 # Create data.yaml if needed
                 data_yaml = Path(dataset_path) / "data.yaml"
@@ -636,12 +629,10 @@ class CPSDashboard:
         if not dataset_path:
             messagebox.showerror("Error", "Please select a dataset")
             return
-
         # Start training in separate thread
         def train_thread():
             self.training_progress.start()
             self._log_training("Starting PaDiM training...")
-
             try:
                 # Get all image paths
                 image_paths = list(Path(dataset_path).glob("*.jpg"))
@@ -696,7 +687,6 @@ class CPSDashboard:
             self._update_status()
         except Exception as e:
             messagebox.showerror("Error", str(e))
-
     def _stop_system(self) -> None:
         """Stop the CPS system."""
         try:
@@ -706,14 +696,12 @@ class CPSDashboard:
             self.is_monitoring = False
         except Exception as e:
             messagebox.showerror("Error", str(e))
-
     def _reset_metrics(self) -> None:
         """Reset system metrics."""
         if messagebox.askyesno("Confirm", "Reset all metrics?"):
             self.cps_system.metrics_tracker.reset_metrics()
             self._log_activity("Metrics reset")
             self._refresh_metrics()
-
     def _refresh_metrics(self) -> None:
         """Refresh metrics display."""
         try:
@@ -787,14 +775,12 @@ class CPSDashboard:
             ax1.plot(list(detection_metrics["inference_times"]))
             ax1.set_title("Detection Inference Time")
             ax1.set_ylabel("Time (ms)")
-
         # Anomaly scores
         ax2 = self.fig.add_subplot(132)
         if anomaly_metrics["anomaly_scores"]:
             ax2.plot(list(anomaly_metrics["anomaly_scores"]))
             ax2.set_title("Anomaly Scores")
             ax2.set_ylabel("Score")
-
         # Severity distribution
         ax3 = self.fig.add_subplot(133)
         severity_counts = anomaly_metrics["severity_counts"]

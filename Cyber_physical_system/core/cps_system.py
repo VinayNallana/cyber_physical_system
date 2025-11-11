@@ -231,7 +231,6 @@ class CyberPhysicalSystem:
         try:
             payload = message.get("payload", {})
             topic = message.get("topic", "")
-
             if "yolo" in topic:
                 self.analytics_engine.update_detection_metrics(payload)
             elif "padim" in topic:

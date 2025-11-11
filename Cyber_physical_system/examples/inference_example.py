@@ -40,14 +40,12 @@ def inference_example():
         print(f"Is anomalous: {anomaly_result['is_anomalous']}")
         print(f"Severity: {anomaly_result['severity_level']}")
         print(f"Inference time: {anomaly_result['inference_time_ms']:.2f} ms")
-
     # Get system status
     print("\nSystem status:")
     status = cps.get_system_status()
     print(f"System running: {status['is_running']}")
     print(f"YOLO trained: {status['models']['yolo_trained']}")
     print(f"PaDiM trained: {status['models']['padim_trained']}")
-
     # Stop system
     cps.stop()
 

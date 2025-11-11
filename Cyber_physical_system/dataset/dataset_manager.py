@@ -48,7 +48,6 @@ class DatasetManager:
             zip_path: Path to ZIP file
             extract_to: Optional extraction directory
             dataset_type: Type of dataset ('yolo' or 'padim')
-
         Returns:
             Dictionary with extraction results
         """
@@ -307,7 +306,6 @@ class DatasetManager:
             dataset_path: Path to dataset
             class_names: List of class names
             nc: Number of classes (auto-detected if None)
-
         Returns:
             Path to created YAML file
         """

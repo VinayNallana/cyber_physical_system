@@ -41,7 +41,6 @@ class RESTProtocol(CommunicationProtocol):
         time.sleep(0.001)
         self.latency_ms = (time.time() - start_time) * 1000
         return True
-
     def receive(self) -> Any:
         """Simulate REST API response."""
         time.sleep(0.001)
@@ -60,7 +59,6 @@ class MQTTProtocol(CommunicationProtocol):
         time.sleep(0.0005)  # Faster than REST
         self.latency_ms = (time.time() - start_time) * 1000
         return True
-
     def receive(self) -> Any:
         """Simulate MQTT subscribe."""
         time.sleep(0.0005)

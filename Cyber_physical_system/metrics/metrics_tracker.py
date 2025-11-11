@@ -22,7 +22,6 @@ class MetricsTracker:
             window_size: Size of sliding window for metrics
         """
         self.window_size = window_size
-
         # Detection metrics
         self.detection_metrics = {
             "total_detections": 0,
@@ -120,7 +119,6 @@ class MetricsTracker:
         try:
             if not anomaly_result.get("success", False):
                 return
-
             anomaly_score = anomaly_result.get("anomaly_score", 0)
             is_anomalous = anomaly_result.get("is_anomalous", False)
             severity = anomaly_result.get("severity_level", "low")

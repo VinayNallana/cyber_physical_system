@@ -45,7 +45,6 @@ class MessageSerializer:
         except Exception as e:
             logger.error(f"Serialization error: {e}")
             return None
-
     @staticmethod
     def deserialize(json_str: str, model_class: Optional[type] = None) -> Any:
         """
